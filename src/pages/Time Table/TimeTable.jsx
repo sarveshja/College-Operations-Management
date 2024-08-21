@@ -1,6 +1,6 @@
 const TimeTable = () => {
     return (
-        <div>Time table</div>
+        <div>Time table page</div>
     )
 }
 
