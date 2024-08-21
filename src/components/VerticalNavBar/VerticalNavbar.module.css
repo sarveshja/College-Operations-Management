@@ -1,0 +1,89 @@
+/* VerticalNavbar.module.css */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 60px;
+    background-color: rgb(39, 143, 184);
+    transition: width 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar:hover {
+    width: 300px; /* Increased width to accommodate the text */
+}
+
+.navbarLogo {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the logo horizontally */
+    padding: 20px 0; /* Adjusted padding to center the logo at the top */
+    width: 100%; /* Ensure the logo container takes full width */
+}
+
+.navbarLogo img {
+    width: 60px; /* Increased logo size */
+    height: 60px; /* Increased logo size */
+}
+
+.navbarTextLogo {
+    display: none; /* Hide text initially */
+    font-size: 16px;
+    color: black; /* Set text color */
+    margin-left: 10px; /* Add some space between the logo and the text */
+    font-weight: bolder;
+}
+
+.navbar:hover .navbarTextLogo {
+    display: inline-block; /* Show text on hover */
+}
+
+.navbarIconsContainer {
+    flex-grow: 1; /* Take up remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center icons vertically */
+    align-items: center; /* Center icons horizontally */
+    width: 100%; /* Ensure the container takes full width */
+}
+
+.navbarIcons {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.navbarItem {
+    display: flex;
+    align-items: center;
+    padding: 15px 10px;
+    padding-left: 20px;
+    color: black;
+    cursor: pointer;
+}
+
+.navbarItem:hover {
+    background-color: skyblue;
+    font-weight: bolder;
+}
+
+.icon {
+    font-size: 20px;
+    margin-right: 15px;
+    color: black;
+}
+
+.navbarText {
+    display: none;
+    font-size: 16px;
+    color: black;
+}
+
+.navbar:hover .navbarText {
+    display: inline-block;
+}

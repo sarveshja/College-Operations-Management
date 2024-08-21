@@ -1,0 +1,11 @@
+.content-container {
+  margin: 0;
+  margin-left: 60px;
+}
+
+@media(max-width:480px) {
+  .content-container {
+    margin-left: 0;
+    margin-top: 65px;
+  }
+}
