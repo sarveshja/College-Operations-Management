@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import styles from './HorizontalNavbar.module.css';
 import logo from '../../../public/images/logo.png';
-import { FaCalendarCheck, FaChartLine, FaClock } from 'react-icons/fa'; // Import icons
+import { FaCalendarCheck, FaChartLine, FaClock, FaSignOutAlt } from 'react-icons/fa'; // Import icons
+import logout from '../../services/logout';
 
-const HorizontalNavbar = ({ onNavbarClick }) => {
+const HorizontalNavbar = ({ onNavbarClick, onLogout}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleMenuClick = () => {
@@ -13,6 +14,12 @@ const HorizontalNavbar = ({ onNavbarClick }) => {
   const handleButtonClick = (buttonName) => {
     onNavbarClick(buttonName);
     setIsMenuOpen(false); // Close menu after click
+  };
+
+  const handleLogout = () => {
+    // Call the onLogout function passed from the parent component
+    logout();
+    onLogout();
   };
 
   return (
@@ -34,6 +41,9 @@ const HorizontalNavbar = ({ onNavbarClick }) => {
           </div>
           <div className={styles.menuItem} onClick={() => handleButtonClick('Time Table')}>
             <FaClock className={styles.icon} /> Time Table
+          </div>
+          <div className={styles.menuItem} onClick={handleLogout}>
+            <FaSignOutAlt className={styles.icon} /> Logout
           </div>
         </div>
       )}

@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import VerticalNavbar from './components/VerticalNavBar/VerticalNavBar'; // Adjust the path as needed
-import HorizontalNavbar from './components/HorizontalNavbar/HorizontalNavbar'; // Adjust the path as needed
+import VerticalNavbar from './components/VerticalNavBar/VerticalNavBar';
+import HorizontalNavbar from './components/HorizontalNavbar/HorizontalNavbar';
 import TimeTable from './pages/Time Table/TimeTable';
+import Login from './pages/Login/Login';
+import SignUp from './pages/SignUp/SignUp'; // Import the SignUp component
 
 const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Manage login state
+  const [isSignUp, setIsSignUp] = useState(false); // Manage sign-up state
   const [selectedOperation, setSelectedOperation] = useState('Time Table');
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768);
 
@@ -17,19 +21,56 @@ const App = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    // Check if 'uniqueID' is in localStorage and set login state accordingly
+    const uniqueId = localStorage.getItem('uniqueID');
+    if (uniqueId) {
+      // Logic to verify the ID (e.g., check with your backend or Firestore)
+      // For simplicity, let's assume the uniqueId is valid if it exists
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    setIsLoggedIn((prevState) => {
+      return !isLoggedIn;
+    })
+  }
+
   const handleNavbarClick = (opr) => {
     setSelectedOperation(opr);
     console.log(`Button clicked: ${opr}`);
   };
 
+  const handleLoginSuccess = () => {
+    setIsLoggedIn(true);
+  };
+
+  const handleSwitchToSignUp = () => {
+    setIsSignUp(true); // Switch to the SignUp component
+  };
+
+  const handleSwitchToLogin = () => {
+    setIsSignUp(false); // Switch back to the Login component
+  };
+
+  // Render the Login or SignUp component if the user is not logged in
+  if (!isLoggedIn) {
+    if (isSignUp) {
+      return <SignUp onSignUpSuccess={handleSwitchToLogin} onSwitchToLogin={handleSwitchToLogin} />;
+    } else {
+      return <Login onLoginSuccess={handleLoginSuccess} onSwitchToSignUp={handleSwitchToSignUp} />;
+    }
+  }
+
   return (
     <div>
       {isMobileView ? (
-        <HorizontalNavbar onNavbarClick={handleNavbarClick} />
+        <HorizontalNavbar onNavbarClick={handleNavbarClick} onLogout={handleLogout}/>
       ) : (
-        <VerticalNavbar onNavbarClick={handleNavbarClick} />
+        <VerticalNavbar onNavbarClick={handleNavbarClick} onLogout={handleLogout}/>
       )}
-      <div className='content-container'>
+      <div className="content-container">
         {selectedOperation === 'Time Table' && <TimeTable />}
       </div>
     </div>

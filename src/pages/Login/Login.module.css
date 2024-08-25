@@ -1,0 +1,138 @@
+/* src/components/Login/Login.module.css */
+.loginOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4b0082; /* Deep purple */
+    z-index: 1000;
+  }
+  
+  .loginContainer {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 40%; /* Set the width to 40% */
+  }
+  
+  .login_heading {
+    font-weight: bolder;
+    text-align: center;
+  }
+  
+  .inputContainer {
+    display: flex;
+    align-items: center;
+    border: 2px solid black; /* Border for the input container */
+    border-radius: 4px;
+    margin: 15px auto; /* Center the input container */
+    width: 80%; /* 80% width */
+    padding: 8px;
+    background-color: #f9f9f9; /* Optional: light background for the input container */
+    margin-top: 30px;
+  }
+  
+  .icon {
+    margin-right: 8px; /* Space between icon and input */
+    color: #666; /* Icon color */
+  }
+  
+  .inputField {
+    border: none;
+    outline: none;
+    width: 100%; /* Take up the remaining space */
+    background-color: transparent; /* Match the container's background */
+    height: 30px;
+    font-size: 1rem; /* Adjust the font size */
+  }
+
+  .errorInput {
+    background-color: #ffe6e6; /* Light red background */
+    border: 1px solid #ff4d4d; /* Red border */
+  }
+  
+  .errorText {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    color: #ff4d4d; /* Red text */
+    font-size: 12px;
+    margin-top: 4px;
+    
+  }
+  
+  
+  .loginButton {
+    padding: 10px 20px; /* Slightly larger padding for better button size */
+    background-color: #4b0082;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 50%; /* Make the button width consistent */
+    display: block;
+    margin: 20px auto 0; /* Center the button */
+    font-size: 1rem; /* Adjust font size */
+    transition: background-color 0.3s ease; /* Add a transition effect */
+  }
+  
+  .loginButton:hover {
+    background-color: rgb(168, 168, 229); /* Darker blue on hover */
+    color: black;
+  }
+
+  .spinner {
+    animation: spin 1s linear infinite;
+    margin-right: 8px; /* Add some space between the spinner and text, if any */
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  
+  .forgotPasswordContainer {
+    display: flex;
+    justify-content: flex-end;
+    width: 80%; /* Match the width of the input fields */
+    margin: 10px auto 0; /* Adjust margin for alignment */
+  }
+  
+  .forgotPasswordLink {
+    color: black;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  
+  .forgotPasswordLink:hover {
+    text-decoration: underline;
+  }
+  
+  .createAccountContainer {
+    margin-top: 15px;
+    text-align: center;
+  }
+  
+  .createAccountLink {
+    color: #4b0082;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .createAccountLink:hover {
+    text-decoration: underline;
+  }
+
+  @media(max-width:768px) {
+    .loginContainer {
+        width: 80%;
+    }
+  }
+  
