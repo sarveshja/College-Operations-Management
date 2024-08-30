@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import VerticalNavbar from './components/VerticalNavBar/VerticalNavBar';
+import VerticalNavbar from './components/VerticalNavBar/VerticalNavbar';
 import HorizontalNavbar from './components/HorizontalNavbar/HorizontalNavbar';
 import TimeTable from './pages/Time Table/TimeTable';
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp'; // Import the SignUp component
+import Classroom from './pages/Classroom/Classroom'; // Import the Classroom component
+import Faculty from './pages/Faculty/Faculty';
+import Department from './pages/Department/Department';
+import Course from './pages/Courses/Courses';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Manage login state
@@ -25,8 +29,6 @@ const App = () => {
     // Check if 'uniqueID' is in localStorage and set login state accordingly
     const uniqueId = localStorage.getItem('uniqueID');
     if (uniqueId) {
-      // Logic to verify the ID (e.g., check with your backend or Firestore)
-      // For simplicity, let's assume the uniqueId is valid if it exists
       setIsLoggedIn(true);
     }
   }, []);
@@ -34,8 +36,8 @@ const App = () => {
   const handleLogout = () => {
     setIsLoggedIn((prevState) => {
       return !isLoggedIn;
-    })
-  }
+    });
+  };
 
   const handleNavbarClick = (opr) => {
     setSelectedOperation(opr);
@@ -66,12 +68,19 @@ const App = () => {
   return (
     <div>
       {isMobileView ? (
-        <HorizontalNavbar onNavbarClick={handleNavbarClick} onLogout={handleLogout}/>
+        <HorizontalNavbar onNavbarClick={handleNavbarClick} onLogout={handleLogout} />
       ) : (
-        <VerticalNavbar onNavbarClick={handleNavbarClick} onLogout={handleLogout}/>
+        <VerticalNavbar onNavbarClick={handleNavbarClick} onLogout={handleLogout} />
       )}
       <div className="content-container">
         {selectedOperation === 'Time Table' && <TimeTable />}
+        {selectedOperation === 'Classroom' && <Classroom />} 
+        {selectedOperation === 'Faculty' && <Faculty />} 
+        {selectedOperation === 'Department' && <Department />} 
+        {selectedOperation === 'Courses' && <Course />} 
+
+
+        {/* Render Classroom component */}
       </div>
     </div>
   );

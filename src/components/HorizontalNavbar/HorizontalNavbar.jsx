@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import styles from './HorizontalNavbar.module.css';
 import logo from '../../../public/images/logo.png';
-import { FaCalendarCheck, FaChartLine, FaClock, FaSignOutAlt } from 'react-icons/fa'; // Import icons
+import { 
+  FaCalendarCheck, FaChartLine, FaClock, FaSignOutAlt, 
+  FaChalkboardTeacher, FaUserTie, FaBuilding, FaBookOpen 
+} from 'react-icons/fa'; // Import additional icons
 import logout from '../../services/logout';
 
-const HorizontalNavbar = ({ onNavbarClick, onLogout}) => {
+const HorizontalNavbar = ({ onNavbarClick, onLogout }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleMenuClick = () => {
@@ -41,6 +44,18 @@ const HorizontalNavbar = ({ onNavbarClick, onLogout}) => {
           </div>
           <div className={styles.menuItem} onClick={() => handleButtonClick('Time Table')}>
             <FaClock className={styles.icon} /> Time Table
+          </div>
+          <div className={styles.menuItem} onClick={() => handleButtonClick('Classroom')}>
+            <FaChalkboardTeacher className={styles.icon} /> Classroom
+          </div>
+          <div className={styles.menuItem} onClick={() => handleButtonClick('Faculty')}>
+            <FaUserTie className={styles.icon} /> Faculty
+          </div>
+          <div className={styles.menuItem} onClick={() => handleButtonClick('Department')}>
+            <FaBuilding className={styles.icon} /> Department
+          </div>
+          <div className={styles.menuItem} onClick={() => handleButtonClick('Courses')}>
+            <FaBookOpen className={styles.icon} /> Courses
           </div>
           <div className={styles.menuItem} onClick={handleLogout}>
             <FaSignOutAlt className={styles.icon} /> Logout

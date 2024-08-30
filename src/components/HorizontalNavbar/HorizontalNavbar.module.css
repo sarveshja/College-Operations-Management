@@ -1,7 +1,7 @@
 /* HorizontalNavbar.module.css */
 .navbar {
     width: 100%;
-    background-color: rgb(39, 143, 184);
+    background-color: #673AB7;
     padding: 10px;
     display: flex;
     align-items: center;
@@ -27,13 +27,13 @@
   .navbarTextLogo {
     margin-left: 10px;
     font-size: 16px;
-    color: black;
+    color: white;
     font-weight: bolder;
   }
   
   .menuIcon {
     font-size: 24px;
-    color: black;
+    color: white;
     cursor: pointer;
   }
   
@@ -41,7 +41,7 @@
     position: absolute;
     top: 65px; /* Adjust based on your navbar height */
     right: 0;
-    background-color: rgb(39, 143, 184);
+    background-color: #673AB7;
     /* border-radius: 8px; */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 10px;
@@ -55,7 +55,7 @@
     align-items: center;
     padding: 10px;
     font-size: 16px;
-    color: black;
+    color: white;
     cursor: pointer;
   }
   
@@ -67,6 +67,6 @@
   .icon {
     margin-right: 10px;
     font-size: 20px;
-    color: black;
+    color: white;
   }
   

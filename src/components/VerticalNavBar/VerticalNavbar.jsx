@@ -1,6 +1,9 @@
 import React from 'react';
 import styles from './VerticalNavbar.module.css';
-import { FaCalendarCheck, FaChartLine, FaClock, FaSignOutAlt } from 'react-icons/fa'; // Importing icons from react-icons
+import { 
+  FaCalendarCheck, FaChartLine, FaClock, FaSignOutAlt, 
+  FaChalkboardTeacher, FaUserTie, FaBuilding, FaBookOpen 
+} from 'react-icons/fa'; // Importing additional icons
 import logo from '../../../public/images/logo.png';
 import logout from '../../services/logout';
 
@@ -34,6 +37,22 @@ const VerticalNavbar = ({ onNavbarClick, onLogout }) => {
           <li className={styles.navbarItem} onClick={() => handleClick('Time Table')}>
             <FaClock className={styles.icon} />
             <span className={styles.navbarText}>Time Table</span>
+          </li>
+          <li className={styles.navbarItem} onClick={() => handleClick('Classroom')}>
+            <FaChalkboardTeacher className={styles.icon} />
+            <span className={styles.navbarText}>Classroom</span>
+          </li>
+          <li className={styles.navbarItem} onClick={() => handleClick('Faculty')}>
+            <FaUserTie className={styles.icon} />
+            <span className={styles.navbarText}>Faculty</span>
+          </li>
+          <li className={styles.navbarItem} onClick={() => handleClick('Department')}>
+            <FaBuilding className={styles.icon} />
+            <span className={styles.navbarText}>Department</span>
+          </li>
+          <li className={styles.navbarItem} onClick={() => handleClick('Courses')}>
+            <FaBookOpen className={styles.icon} />
+            <span className={styles.navbarText}>Courses</span>
           </li>
           <li className={styles.navbarItem} onClick={handleLogout}>
             <FaSignOutAlt className={styles.icon} />
