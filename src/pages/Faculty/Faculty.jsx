@@ -161,6 +161,7 @@ const Faculty = () => {
                         onClose={handleClose}
                         onSave={handleSave}
                         mode={mode}
+                        existingFaculties={facultyList}
                     />
                 )}
             </div>

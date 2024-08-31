@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './FacultyModal.module.css';
 
-const FacultyModal = ({ faculty, onClose, onSave, mode }) => {
+const FacultyModal = ({ faculty, onClose, onSave, mode, existingFaculties }) => {
     const [editedFaculty, setEditedFaculty] = useState(
         mode === 'edit' ? { ...faculty } : { id: Date.now(), name: '' }
     );
@@ -17,6 +17,17 @@ const FacultyModal = ({ faculty, onClose, onSave, mode }) => {
     const handleSave = () => {
         if (!editedFaculty.name.trim()) {
             return; // Avoid saving if the name is empty
+        }
+
+        // Check if the faculty name already exists (case-insensitive)
+        const isDuplicate = existingFaculties.some(f => f.name.toLowerCase() === editedFaculty.name.toLowerCase());
+
+        if (isDuplicate && mode !== 'edit') {
+            // Ask for confirmation if the name already exists
+            const confirmed = window.confirm('This faculty name already exists. Do you still want to add it?');
+            if (!confirmed) {
+                return; // Cancel saving if not confirmed
+            }
         }
 
         onSave(editedFaculty);
