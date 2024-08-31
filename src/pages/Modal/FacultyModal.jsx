@@ -1,17 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './FacultyModal.module.css';
 
 const FacultyModal = ({ faculty, onClose, onSave, mode }) => {
-    // Initialize state based on mode
-    const [editedFaculty, setEditedFaculty] = React.useState(
+    const [editedFaculty, setEditedFaculty] = useState(
         mode === 'edit' ? { ...faculty } : { id: Date.now(), name: '' }
     );
+
+    useEffect(() => {
+        setEditedFaculty(mode === 'edit' ? { ...faculty } : { id: Date.now(), name: '' });
+    }, [faculty, mode]);
 
     const handleChange = (e) => {
         setEditedFaculty({ ...editedFaculty, [e.target.name]: e.target.value });
     };
 
     const handleSave = () => {
+        if (!editedFaculty.name.trim()) {
+            return; // Avoid saving if the name is empty
+        }
+
         onSave(editedFaculty);
     };
 

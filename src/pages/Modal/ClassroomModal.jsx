@@ -1,17 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './ClassroomModal.module.css';
 
-const ClassroomModal = ({ classroom, onClose, onSave, mode }) => {
-    // Initialize state based on mode
-    const [editedClassroom, setEditedClassroom] = React.useState(
+const ClassroomModal = ({ classroom, onClose, onSave, mode, existingClassrooms }) => {
+    const [editedClassroom, setEditedClassroom] = useState(
         mode === 'edit' ? { ...classroom } : { id: Date.now(), name: '' }
     );
+    const [warning, setWarning] = useState(''); // State for warning message
+
+    useEffect(() => {
+        setEditedClassroom(mode === 'edit' ? { ...classroom } : { id: Date.now(), name: '' });
+    }, [classroom, mode]);
 
     const handleChange = (e) => {
         setEditedClassroom({ ...editedClassroom, [e.target.name]: e.target.value });
+        setWarning(''); // Clear warning when user is typing
     };
 
     const handleSave = () => {
+        if (!editedClassroom.name.trim()) {
+            setWarning('Classroom name is required.');
+            return;
+        }
+
+        // Check for duplicate classroom name
+        const duplicate = existingClassrooms.some(
+            (classroom) => classroom.name.toLowerCase() === editedClassroom.name.toLowerCase()
+        );
+
+        if (duplicate && mode === 'add') {
+            setWarning('A classroom with this name already exists.');
+            return;
+        }
+
         onSave(editedClassroom);
     };
 
@@ -37,6 +57,7 @@ const ClassroomModal = ({ classroom, onClose, onSave, mode }) => {
                             value={editedClassroom.name}
                             onChange={handleChange}
                         />
+                        {warning && <p className={styles.warning}>{warning}</p>}
                     </div>
                 </div>
                 <div className={styles.buttonGroup}>

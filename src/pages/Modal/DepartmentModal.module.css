@@ -100,6 +100,12 @@
     color: black;
 }
 
+.warning {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     .modalCard {
