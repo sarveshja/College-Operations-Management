@@ -14,6 +14,7 @@ const SearchBar = ({ data, searchFields, onSearch }) => {
     return (
         <div className={styles.searchBar}>
             <input
+                className={styles.searchInput}
                 type="text"
                 placeholder={`Search by ${searchFields.join(' or ')}`}
                 value={query}

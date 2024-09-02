@@ -2,14 +2,14 @@
     position: relative;
     top: 30px;
     margin: 20px 30px;
-    padding-bottom: 80px;
+    padding-bottom: 20px;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 20px;
 }
 
 .heading {
@@ -17,9 +17,11 @@
     font-size: 24px;
     font-weight: bold;
     margin-left: 34px;
+    width: 30%;
 }
 
 .addButton {
+    width: 30%;
     padding: 10px 20px; /* Increased padding for a larger button */
     background-color: #9e9e9e;
     color: black;
@@ -30,6 +32,7 @@
     margin-right: 40px;
     font-size: 16px; /* Increased font size for better readability */
     font-weight: bold; 
+    border: 3px solid black;
 }
 
 .addButton:hover {
@@ -67,6 +70,7 @@
     font-weight: bolder;
     height: 40px;
     font-size: 18px;
+    color: white;
 }
 
 .editButton,
@@ -86,7 +90,7 @@
 }
 
 /* Responsive Styles */
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
     .table, .tableHead, .tableBody, .tableHeader, .tableCell, .tableRow {
         display: block;
         width: 100%;
@@ -124,4 +128,4 @@
 
     .tableCell:nth-of-type(1):before { content: "Faculty Name"; }
     .tableCell:nth-of-type(2):before { content: "Actions"; }
-}
+} */

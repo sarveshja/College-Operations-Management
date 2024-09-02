@@ -116,6 +116,7 @@ const Classroom = () => {
         <Fragment>
             <div className={styles.header}>
                 <h2 className={styles.heading}>Classroom Details</h2>
+                <div classroom={styles.searchBar_container}></div>
                 <SearchBar data={classrooms} searchFields={searchField} onSearch={handleSearch} />
                 <button className={styles.addButton} onClick={handleAddClassroom}>
                     Add Classroom
