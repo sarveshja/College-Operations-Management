@@ -13,7 +13,7 @@ import Course from './pages/Courses/Courses';
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Manage login state
   const [isSignUp, setIsSignUp] = useState(false); // Manage sign-up state
-  const [selectedOperation, setSelectedOperation] = useState('Time Table');
+  const [selectedOperation, setSelectedOperation] = useState('Time Table by Degree');
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -73,7 +73,12 @@ const App = () => {
         <VerticalNavbar onNavbarClick={handleNavbarClick} onLogout={handleLogout} />
       )}
       <div className="content-container">
-        {selectedOperation === 'Time Table' && <TimeTable />}
+      {(
+        selectedOperation === 'Time Table by Degree' || 
+        selectedOperation === 'Time Table by Faculty' || 
+        selectedOperation === 'Time Table by Classroom' || 
+        selectedOperation === 'Time Table by Day') && <TimeTable type={selectedOperation}/>}
+
         {selectedOperation === 'Classroom' && <Classroom />} 
         {selectedOperation === 'Faculty' && <Faculty />} 
         {selectedOperation === 'Department' && <Department />} 

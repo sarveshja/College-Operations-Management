@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './VerticalNavbar.module.css';
 import { 
   FaCalendarCheck, FaChartLine, FaClock, FaSignOutAlt, 
-  FaChalkboardTeacher, FaUserTie, FaBuilding, FaBookOpen 
-} from 'react-icons/fa'; // Importing additional icons
+  FaChalkboardTeacher, FaUserTie, FaBuilding, FaBookOpen, FaChevronDown, FaChevronUp 
+} from 'react-icons/fa';
 import logo from '../../../public/images/logo.png';
 import logout from '../../services/logout';
 
 const VerticalNavbar = ({ onNavbarClick, onLogout }) => {
+  const [showTimeTableDropdown, setShowTimeTableDropdown] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
 
   const handleClick = (buttonName) => {
     onNavbarClick(buttonName);
@@ -18,8 +20,27 @@ const VerticalNavbar = ({ onNavbarClick, onLogout }) => {
     onLogout();
   };
 
+  const toggleTimeTableDropdown = (e) => {
+    e.stopPropagation(); // Prevent click event from bubbling up
+    setShowTimeTableDropdown(!showTimeTableDropdown);
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+    setShowTimeTableDropdown(false); // Ensure dropdown closes on hover initially
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+    setShowTimeTableDropdown(false); // Ensure dropdown closes when leaving hover
+  };
+
   return (
-    <div className={styles.navbar}>
+    <div 
+      className={styles.navbar} 
+      onMouseEnter={handleMouseEnter} 
+      onMouseLeave={handleMouseLeave}
+    >
       <div className={styles.navbarLogo}>
         <img src={logo} alt="Logo" />
         <span className={styles.navbarTextLogo}>Sri Ramachandra Faculty of Engineering and Technology</span>
@@ -34,10 +55,38 @@ const VerticalNavbar = ({ onNavbarClick, onLogout }) => {
             <FaChartLine className={styles.icon} />
             <span className={styles.navbarText}>Results</span>
           </li>
-          <li className={styles.navbarItem} onClick={() => handleClick('Time Table')}>
-            <FaClock className={styles.icon} />
-            <span className={styles.navbarText}>Time Table</span>
+          <li className={styles.navbarItem}>
+            <div className={styles.navbarItemWithDropdown}>
+              <FaClock className={styles.icon} />
+              <span className={styles.navbarText}>Time Table</span>
+              {isHovering && (
+                <FaChevronDown
+                  className={styles.dropdownIcon}
+                  onClick={toggleTimeTableDropdown}
+                />
+              )}
+            </div>
           </li>
+          {showTimeTableDropdown && (
+            <ul className={styles.dropdownMenu}>
+              <li className={styles.dropdownItem} onClick={() => handleClick('Time Table by Degree')}>
+                <FaBookOpen className={styles.icon} />
+                <span className={styles.dropdownText}>By Degree</span>
+              </li>
+              <li className={styles.dropdownItem} onClick={() => handleClick('Time Table by Faculty')}>
+                <FaUserTie className={styles.icon} />
+                <span className={styles.dropdownText}>By Faculty</span>
+              </li>
+              <li className={styles.dropdownItem} onClick={() => handleClick('Time Table by Classroom')}>
+                <FaChalkboardTeacher className={styles.icon} />
+                <span className={styles.dropdownText}>By Classroom</span>
+              </li>
+              <li className={styles.dropdownItem} onClick={() => handleClick('Time Table by Day')}>
+                <FaCalendarCheck className={styles.icon} />
+                <span className={styles.dropdownText}>By Day</span>
+              </li>
+            </ul>
+          )}
           <li className={styles.navbarItem} onClick={() => handleClick('Classroom')}>
             <FaChalkboardTeacher className={styles.icon} />
             <span className={styles.navbarText}>Classroom</span>

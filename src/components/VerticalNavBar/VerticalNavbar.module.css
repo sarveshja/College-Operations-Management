@@ -1,4 +1,4 @@
-/* VerticalNavbar.module.css */
+/* General Navbar styles */
 .navbar {
     position: fixed;
     top: 0;
@@ -6,54 +6,92 @@
     height: 100vh;
     width: 60px;
     background-color: #673AB7;
-    transition: width 0.3s ease;
-    overflow: hidden;
+    transition: width 0.3s ease-in-out;
+    overflow-x: hidden; /* Ensure horizontal overflow is hidden */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds 100vh */
     display: flex;
     flex-direction: column;
     align-items: center;
     z-index: 10000;
+    scrollbar-width: thin; /* For Firefox, makes the scrollbar thinner */
 }
+
+/* Customize scrollbar for WebKit-based browsers (Chrome, Safari) */
+.navbar::-webkit-scrollbar {
+    width: 8px; /* Adjust the width of the scrollbar */
+}
+
+.navbar::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.5); /* Scrollbar thumb color */
+    border-radius: 4px; /* Round the edges of the scrollbar thumb */
+}
+
+.navbar:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.8); /* Darken thumb on hover */
+}
+
 
 .navbar:hover {
-    width: 300px; /* Increased width to accommodate the text */
+    width: 300px; /* Expand width on hover */
 }
 
+/* Logo styling */
 .navbarLogo {
     display: flex;
     align-items: center;
-    justify-content: center; /* Center the logo horizontally */
-    padding: 20px 0; /* Adjusted padding to center the logo at the top */
-    width: 100%; /* Ensure the logo container takes full width */
+    justify-content: center;
+    padding: 20px 0;
+    width: 100%;
 }
 
 .navbarLogo img {
-    width: 60px; /* Increased logo size */
-    height: 60px; /* Increased logo size */
+    width: 50px;
+    height: 50px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.navbar:hover .navbarLogo img {
+    transform: scale(1.1);
 }
 
 .navbarTextLogo {
-    display: none; /* Hide text initially */
+    display: none;
     font-size: 16px;
-    color: white; /* Set text color */
-    margin-left: 10px; /* Add some space between the logo and the text */
+    color: white;
+    margin-left: 10px;
     font-weight: bolder;
+    white-space: normal; /* Allow text to wrap */
+    overflow: hidden;
+    transition: opacity 0.3s ease-in-out;
+    width: 240px;
+    word-wrap: break-word; /* Ensure long words break */
+    line-height: 1.2; /* Adjust line height for better spacing */
 }
 
 .navbar:hover .navbarTextLogo {
-    display: inline-block; /* Show text on hover */
+    display: inline-block;
+    opacity: 1;
 }
 
+
+.navbar:hover .navbarTextLogo {
+    display: inline-block;
+    opacity: 1;
+}
+
+/* Navbar icons container */
 .navbarIconsContainer {
-    flex-grow: 1; /* Take up remaining space */
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center icons vertically */
-    align-items: center; /* Center icons horizontally */
-    width: 100%; /* Ensure the container takes full width */
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 20px;
+    width: 100%;
 }
 
 .navbarIcons {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
     margin: 0;
     width: 100%;
@@ -62,29 +100,84 @@
 .navbarItem {
     display: flex;
     align-items: center;
+    width: 100%;
     padding: 15px 10px;
     padding-left: 20px;
     color: white;
     cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
 }
 
 .navbarItem:hover {
-    background-color:#51279b;
+    background-color: #51279b;
     font-weight: bolder;
 }
 
+/* Icon styling */
 .icon {
     font-size: 20px;
-    margin-right: 15px;
     color: white;
+    transition: transform 0.3s ease-in-out;
+}
+
+.navbarItem:hover .icon {
+    transform: scale(1.2);
 }
 
 .navbarText {
     display: none;
     font-size: 16px;
     color: white;
+    margin-left: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .navbar:hover .navbarText {
     display: inline-block;
+    opacity: 1;
+}
+
+/* Dropdown-related styles */
+.dropdownIcon {
+    /* margin-left: auto; */
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    margin-left: 120px;
+    margin-top: 0;
+}
+
+/* Dropdown menu hidden by default */
+.dropdownMenu {
+    display: none;
+    list-style: none;
+    padding-left: 20px;
+    margin: 10px 0 0 0;
+}
+
+/* Dropdown items */
+.dropdownItem {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.dropdownItem:hover {
+    background-color: #452680;
+}
+
+.dropdownText {
+    margin-left: 10px;
+    font-size: 14px;
+    color: white;
+}
+
+/* Show dropdown on toggle */
+.navbar:hover .dropdownMenu {
+    display: block;
 }

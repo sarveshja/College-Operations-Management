@@ -1,6 +1,6 @@
-const TimeTable = () => {
+const TimeTable = ({type}) => {
     return (
-        <div>Time table </div>
+        <div>Time table page</div>
     )
 }
 
