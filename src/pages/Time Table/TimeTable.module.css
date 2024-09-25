@@ -1,0 +1,173 @@
+.tableContainer {
+    position: relative;
+    top: 30px;
+    margin: 20px 30px;
+    padding-bottom: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.heading {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 34px;
+    width: 30%;
+}
+
+.addButton {
+    width: 30%;
+    padding: 10px 20px; /* Increased padding for a larger button */
+    background-color: #9e9e9e;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    margin-right: 40px;
+    font-size: 16px; /* Increased font size for better readability */
+    font-weight: bold; 
+    border: 3px solid black;
+}
+
+.addButton:hover {
+    background-color: #e6e6fa;
+    color: black;
+}
+
+.loadingSpinner {
+    color: black;
+    font-size: 30px;
+    font-weight: bolder;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+}
+
+.tableRow {
+    width: 100%;
+}
+
+.tableHeader,
+.tableCell {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.tableHeader {
+    background-color: #673AB7;
+    font-weight: bolder;
+    height: 40px;
+    font-size: 18px;
+    color: white;
+}
+
+.editButton {
+    padding: 5px 10px;
+    margin: 5px;
+    background-color: #c1c1c1;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.editButton:hover {
+    background-color: #e6e6fa;
+    color: black;
+}
+.deleteButton:hover {
+    background-color: #e6e6fa;
+    color: rgb(255, 0, 0);
+}
+.deleteButton {
+    padding: 5px 10px;
+    margin: 2px;
+    background-color: #ff2525;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* Container styling to align the selects and button in a row */
+.select-container {
+    flex: 1; /* Ensures the dropdowns take equal space */
+  display: flex;
+  flex-direction: row; /* Ensures the label and dropdown are stacked vertically */
+  margin-bottom: 20px; /* Align items vertically in the middle */
+}
+.dropdown-container {
+    display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px; /* Adjust the spacing between dropdowns as needed */
+  }
+/* Style for the select elements */
+select {
+     /* Space to the right of each select element */
+    flex: 1; /* Allow the select elements to take equal space */
+    min-width: 150px; /* Set a minimum width to prevent shrinking too much */
+    padding: 10px 15px; /* Attractive padding for the options */
+    margin: 10px; /* Remove margin so they align properly */
+    border-radius: 5px; /* Rounded corners for a modern look */
+    border: 1px solid #ccc; /* Light border around the select element */
+    background-color: #f9f9f9; /* Subtle background color */
+    font-size: 16px; /* Slightly larger font for readability */
+    color: #333; /* Darker font color for better contrast */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    outline: none; /* Remove default outline on focus */
+    transition: all 0.3s ease-in-out; /* Smooth hover and focus effects */
+}
+select:last-child {
+    margin-right: 0; /* No margin for the last select */
+}
+/* Hover and focus effects for select elements */
+select:focus {
+    border-color: #007bff; /* Blue border on focus */
+    background-color: #fff; /* White background on focus */
+    box-shadow: 0 2px 10px rgba(0, 123, 255, 0.2); /* Enhanced shadow */
+}
+
+/* Style for the option elements inside select */
+select option {
+    padding: 10px; /* Extra padding inside options */
+    background-color: #fff; /* Ensure white background for options */
+    font-size: 14px; /* Slightly smaller font size for options */
+    color: #333; /* Consistent text color */
+}
+
+/* Style for button */
+button {
+    margin: 10px;
+    padding: 10px 20px; /* Padding for a clickable button */
+    margin-top: 15px; /* Space above the button */
+    background-color: #007bff; /* Primary button color */
+    color: #fff; /* White text */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Change cursor on hover */
+    font-size: 16px; /* Consistent font size */
+    transition: background-color 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Hover effect for button */
+button:hover {
+    background-color: #014fa2; /* Darker blue on hover */
+}
+
+/* Optional: Styling for <p> tags (instruction text) */
+p {
+    font-size: 16px;
+    color: #555; /* Softer color for instructional text */
+    margin: 10px 0;
+}

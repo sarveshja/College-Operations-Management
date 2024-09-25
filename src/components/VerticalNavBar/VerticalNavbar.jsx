@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './VerticalNavbar.module.css';
 import { 
   FaCalendarCheck, FaChartLine, FaClock, FaSignOutAlt, 
-  FaChalkboardTeacher, FaUserTie, FaBuilding, FaBookOpen, FaChevronDown, FaChevronUp 
+  FaChalkboardTeacher, FaUserTie, FaBuilding, FaBookOpen, FaChevronDown , FaPlus
 } from 'react-icons/fa';
 import logo from '../../../public/images/logo.png';
 import logout from '../../services/logout';
@@ -84,6 +84,10 @@ const VerticalNavbar = ({ onNavbarClick, onLogout }) => {
               <li className={styles.dropdownItem} onClick={() => handleClick('Time Table by Day')}>
                 <FaCalendarCheck className={styles.icon} />
                 <span className={styles.dropdownText}>By Day</span>
+              </li>
+              <li className={styles.dropdownItem} onClick={() => handleClick('Add Time Table')}>
+              <FaPlus className={styles.icon} />
+                <span className={styles.dropdownText}>Add Time Table</span>
               </li>
             </ul>
           )}

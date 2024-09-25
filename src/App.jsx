@@ -77,6 +77,7 @@ const App = () => {
         {selectedOperation === 'Time Table by Faculty' && <TimeTable type="Time Table by Faculty" />}
         {selectedOperation === 'Time Table by Classroom' && <TimeTable type="Time Table by Classroom" />}
         {selectedOperation === 'Time Table by Day' && <TimeTable type="Time Table by Day" />}
+        {selectedOperation === 'Add Time Table' && <TimeTable type="Add Time Table"/>}
         
         {selectedOperation === 'Classroom' && <Classroom />} 
         {selectedOperation === 'Faculty' && <Faculty />} 
