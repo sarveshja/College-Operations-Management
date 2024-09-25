@@ -55,7 +55,7 @@ const VerticalNavbar = ({ onNavbarClick, onLogout }) => {
             <FaChartLine className={styles.icon} />
             <span className={styles.navbarText}>Results</span>
           </li>
-          <li className={styles.navbarItem}>
+          <li className={styles.navbarItem} onClick={toggleTimeTableDropdown}>
             <div className={styles.navbarItemWithDropdown}>
               <FaClock className={styles.icon} />
               <span className={styles.navbarText}>Time Table</span>
@@ -69,19 +69,19 @@ const VerticalNavbar = ({ onNavbarClick, onLogout }) => {
           </li>
           {showTimeTableDropdown && (
             <ul className={styles.dropdownMenu}>
-              <li className={styles.dropdownItem} onClick={() => handleClick('Time Table by Degree')}>
+              <li className={styles.dropdownItem} onClick={() => handleClick('By Degree')}>
                 <FaBookOpen className={styles.icon} />
                 <span className={styles.dropdownText}>By Degree</span>
               </li>
-              <li className={styles.dropdownItem} onClick={() => handleClick('Time Table by Faculty')}>
+              <li className={styles.dropdownItem} onClick={() => handleClick('By Faculty')}>
                 <FaUserTie className={styles.icon} />
                 <span className={styles.dropdownText}>By Faculty</span>
               </li>
-              <li className={styles.dropdownItem} onClick={() => handleClick('Time Table by Classroom')}>
+              <li className={styles.dropdownItem} onClick={() => handleClick('By Classroom')}>
                 <FaChalkboardTeacher className={styles.icon} />
                 <span className={styles.dropdownText}>By Classroom</span>
               </li>
-              <li className={styles.dropdownItem} onClick={() => handleClick('Time Table by Day')}>
+              <li className={styles.dropdownItem} onClick={() => handleClick('By Day')}>
                 <FaCalendarCheck className={styles.icon} />
                 <span className={styles.dropdownText}>By Day</span>
               </li>
