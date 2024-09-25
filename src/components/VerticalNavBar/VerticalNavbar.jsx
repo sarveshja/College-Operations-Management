@@ -69,19 +69,19 @@ const VerticalNavbar = ({ onNavbarClick, onLogout }) => {
           </li>
           {showTimeTableDropdown && (
             <ul className={styles.dropdownMenu}>
-              <li className={styles.dropdownItem} onClick={() => handleClick('By Degree')}>
+              <li className={styles.dropdownItem} onClick={() => handleClick('Time Table by Degree')}>
                 <FaBookOpen className={styles.icon} />
                 <span className={styles.dropdownText}>By Degree</span>
               </li>
-              <li className={styles.dropdownItem} onClick={() => handleClick('By Faculty')}>
+              <li className={styles.dropdownItem} onClick={() => handleClick('Time Table by Faculty')}>
                 <FaUserTie className={styles.icon} />
                 <span className={styles.dropdownText}>By Faculty</span>
               </li>
-              <li className={styles.dropdownItem} onClick={() => handleClick('By Classroom')}>
+              <li className={styles.dropdownItem} onClick={() => handleClick('Time Table by Classroom')}>
                 <FaChalkboardTeacher className={styles.icon} />
                 <span className={styles.dropdownText}>By Classroom</span>
               </li>
-              <li className={styles.dropdownItem} onClick={() => handleClick('By Day')}>
+              <li className={styles.dropdownItem} onClick={() => handleClick('Time Table by Day')}>
                 <FaCalendarCheck className={styles.icon} />
                 <span className={styles.dropdownText}>By Day</span>
               </li>

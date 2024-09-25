@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 const facultyNames = ['Dr. John Smith', 'Dr. Jane Doe', 'Prof. Michael Brown'];
 const classroomNumbers = ['101', '102', '103', '104', '105'];
-
+const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+const hoursOfDay = [ '08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '01:00 PM', '02:00 PM', '03:00 PM', '04:00 PM'];
 const TimeTable = ({ type }) => {
 /* for timetable by department */
 const [department, setDepartment] = useState('');
@@ -18,7 +19,7 @@ const [selectedHour, setSelectedHour] = useState('');
     const handleDepartmentChange = (e) => setDepartment(e.target.value);
     const handleYearChange = (e) => setYear(e.target.value);
     const handleSemesterChange = (e) => setSemester(e.target.value);
-
+    
     const handleFacultyChange = (event) => {
         setSelectedFaculty(event.target.value);
     };
