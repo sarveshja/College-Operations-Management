@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styles from './TimeTable.module.css';
 const facultyNames = ['Dr. John Smith', 'Dr. Jane Doe', 'Prof. Michael Brown'];
 const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -49,8 +49,90 @@ const TimeTable = ({ type }) => {
     const [selectedDay, setSelectedDay] = useState('');
     const [selectedHour, setSelectedHour] = useState('');
     const [filteredTimetable, setFilteredTimetable] = useState([]);
+    const [classroomData, setClassroomData] = useState([
+      // Existing mock data or can be empty initially
+      { id: 1, classroom: 'Language Lab', day: 'Monday', hour: '09:00 AM', name: 'Mathematics', faculty: 'Dr. John Smith', department: 'BSc Computer Science', year: 'First Year', semester: 'Semester 1' },
+      { id: 2, classroom: 'Classroom 1', day: 'Tuesday', hour: '10:00 AM', name: 'Physics', faculty: 'Prof. Michael Brown', department: 'BTech', year: 'Second Year', semester: 'Semester 2' },
+      { id: 3, classroom: 'Classroom 2 - AIML Lab (Lab1)', day: 'Wednesday', hour: '11:00 AM', name: 'Chemistry', faculty: 'Dr. Jane Doe', department: 'MSc', year: 'Third Year', semester: 'Term 3' },
+      { id: 4, classroom: 'Classroom 3 - AIDA Lab (Lab2)', day: 'Thursday', hour: '12:00 PM', name: 'Computer Science', faculty: 'Dr. John Smith', department: 'BTech', year: 'Fourth Year', semester: 'Term 4' },
+  
+    ]);
+    const [isEditing, setIsEditing] = useState(false); // For edit mode
+    const [editId, setEditId] = useState(null); // Track which entry is being edited
+    // Store updated data into localStorage
+    useEffect(() => {
+      localStorage.setItem('classroomData', JSON.stringify(classroomData));
+    }, [classroomData]);
+    useEffect(() => {
+      const storedData = localStorage.getItem('classroomData');
+      if (storedData) {
+        setClassroomData(JSON.parse(storedData));
+      }
+    }, []);
+  
+    useEffect(() => {
+      localStorage.setItem('classroomData', JSON.stringify(classroomData));
+    }, [classroomData]);
 
-    
+    const [newEntry, setNewEntry] = useState({
+      classroom: '',
+      day: '',
+      hour: '',
+      name: '',
+      faculty: '',
+      department: '',
+      year: '',
+      semester: ''
+    });
+    // Handler to update the form values
+    const handleChange = (e) => {
+      setNewEntry({
+        ...newEntry,
+        [e.target.name]: e.target.value,
+      });
+    };
+    // Handle adding new timetable entry
+  const handleAddEntry = () => {
+    if (isEditing) {
+      setClassroomData(
+        classroomData.map((entry) =>
+          entry.id === editId ? { ...entry, ...newEntry } : entry
+        )
+      );
+      setIsEditing(false); // Exit edit mode
+      setEditId(null); // Reset edit ID
+    } else {
+      setClassroomData([
+        ...classroomData,
+        { id: classroomData.length + 1, ...newEntry }
+      ]);
+    }
+
+    // Reset form
+    setNewEntry({
+      classroom: '',
+      day: '',
+      hour: '',
+      name: '',
+      faculty: '',
+      department: '',
+      year: '',
+      semester: ''
+    });
+  };
+// Handle edit button click
+const handleEdit = (id) => {
+  const entryToEdit = classroomData.find((entry) => entry.id === id);
+  setNewEntry(entryToEdit);
+  setIsEditing(true);
+  setEditId(id); // Track which entry is being edited
+};
+
+// Handle delete button click
+const handleDelete = (id) => {
+  const updatedData = classroomData.filter((entry) => entry.id !== id);
+  setClassroomData(updatedData);
+};
   const handleDepartmentChange = (e) => setDepartment(e.target.value);
   const handleYearChange = (e) => setYear(e.target.value);
   const handleSemesterChange = (e) => setSemester(e.target.value);
@@ -287,7 +369,6 @@ const TimeTable = ({ type }) => {
       )}
 {type === 'Time Table by Classroom' && (
   <div className={styles.selectContainer}>
-    <h2>Time Table for Classroom</h2>
 
     {/* Select Classroom Dropdown */}
     <p>Select a classroom:</p>
@@ -307,10 +388,10 @@ const TimeTable = ({ type }) => {
         <table className={styles.table}>
           <thead className={styles.tableHead}>
             <tr className={styles.tableRow}>
+              <th className={styles.tableHeader}>Classroom</th>
               <th className={styles.tableHeader}>Course</th>
               <th className={styles.tableHeader}>Day</th>
               <th className={styles.tableHeader}>Time</th>
-              <th className={styles.tableHeader}>Actions</th>
             </tr>
           </thead>
           <tbody className={styles.tableBody}>
@@ -319,17 +400,11 @@ const TimeTable = ({ type }) => {
               .filter((classroom) => classroom.classroom === selectedClassroom)
               .map((classData) => (
                 <tr key={classData.id} className={styles.tableRow}>
+                  <td className={styles.tableCell}>{classData.classroom}</td>
                   <td className={styles.tableCell}>{classData.name}</td>
                   <td className={styles.tableCell}>{classData.day}</td>
                   <td className={styles.tableCell}>{classData.hour}</td>
-                  <td className={styles.tableCell}>
-                    <button className={styles.editButton} onClick={() => alert('Edit feature coming soon')}>
-                      Edit
-                    </button>
-                    <button className={styles.deleteButton} onClick={() => alert('Delete feature coming soon')}>
-                      Delete
-                    </button>
-                  </td>
+                  
                 </tr>
               ))}
           </tbody>
@@ -341,7 +416,57 @@ const TimeTable = ({ type }) => {
 
 
     {type === 'Add Time Table' &&(
-      <p>add timetable</p>
+       <div>
+       <h2>{isEditing ? "Edit Timetable Entry" : "Add Timetable Entry"}</h2>
+      <div className="form-container">
+        <input type="text" name="classroom" value={newEntry.classroom} onChange={handleChange} placeholder="Classroom" />
+        <input type="text" name="day" value={newEntry.day} onChange={handleChange} placeholder="Day" />
+        <input type="text" name="hour" value={newEntry.hour} onChange={handleChange} placeholder="Hour" />
+        <input type="text" name="name" value={newEntry.name} onChange={handleChange} placeholder="Course Name" />
+        <input type="text" name="faculty" value={newEntry.faculty} onChange={handleChange} placeholder="Faculty Name" />
+        <input type="text" name="department" value={newEntry.department} onChange={handleChange} placeholder="Department" />
+        <input type="text" name="year" value={newEntry.year} onChange={handleChange} placeholder="Year" />
+        <input type="text" name="semester" value={newEntry.semester} onChange={handleChange} placeholder="Semester/Term" />
+        <button onClick={handleAddEntry}>{isEditing ? "Update Timetable Entry" : "Add Timetable Entry"}</button>
+      </div>
+ 
+       {/* Display the timetable in a table */}
+       <div className={styles.tableContainer}>
+         <table className={styles.table}>
+           <thead className={styles.tableHead}>
+             <tr className={styles.tableRow}>
+               <th className={styles.tableHeader}>Classroom</th>
+               <th className={styles.tableHeader}>Course</th>
+               <th className={styles.tableHeader}>Day</th>
+               <th className={styles.tableHeader}>Hour</th>
+               <th className={styles.tableHeader}>Faculty</th>
+               <th className={styles.tableHeader}>Department</th>
+               <th className={styles.tableHeader}>Year</th>
+               <th className={styles.tableHeader}>Semester</th>
+               <th className={styles.tableHeader}>Actions</th>
+             </tr>
+           </thead>
+           <tbody className={styles.tableBody}>
+             {classroomData.map((classroom) => (
+               <tr key={classroom.id} className={styles.tableRow}>
+                 <td className={styles.tableCell}>{classroom.classroom}</td>
+                 <td className={styles.tableCell}>{classroom.name}</td>
+                 <td className={styles.tableCell}>{classroom.day}</td>
+                 <td className={styles.tableCell}>{classroom.hour}</td>
+                 <td className={styles.tableCell}>{classroom.faculty}</td>
+                 <td className={styles.tableCell}>{classroom.department}</td>
+                 <td className={styles.tableCell}>{classroom.year}</td>
+                 <td className={styles.tableCell}>{classroom.semester}</td>
+                 <td>
+                  <button onClick={() => handleEdit(classroom.id)}>Edit</button>
+                  <button onClick={() => handleDelete(classroom.id)}>Delete</button>
+                </td>
+               </tr>
+             ))}
+           </tbody>
+         </table>
+       </div>
+     </div>
     )}
     </div>
   );

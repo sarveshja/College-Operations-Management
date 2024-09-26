@@ -6,6 +6,7 @@ import db from '../../services/firebaseConfig';
 import DepartmentModal from '../Modal/DepartmentModal';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import styles from './Department.module.css';
+import { FaSpinner } from 'react-icons/fa';
 
 const Department = () => {
     const [departments, setDepartments] = useState([]);
@@ -135,7 +136,7 @@ const Department = () => {
 
             <div className={styles.tableContainer}>
                 {loading ? (
-                    <div className={styles.loadingSpinner}>Loading...</div>
+                    <div className={styles.loadingSpinner}><FaSpinner className={styles.spinnerIcon} /></div>
                 ) : (
                     <table className={styles.table}>
                         <thead className={styles.tableHead}>

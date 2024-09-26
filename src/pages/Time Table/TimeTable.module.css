@@ -73,31 +73,18 @@
     color: white;
 }
 
-.editButton {
-    padding: 5px 10px;
-    margin: 5px;
-    background-color: #c1c1c1;
-    color: black;
-    border-radius: 5px;
-    cursor: pointer;
-}
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  input {
+    padding: 10px;
+    font-size: 16px;
+  }
 
-.editButton:hover {
-    background-color: #e6e6fa;
-    color: black;
-}
-.deleteButton:hover {
-    background-color: #e6e6fa;
-    color: rgb(255, 0, 0);
-}
-.deleteButton {
-    padding: 5px 10px;
-    margin: 2px;
-    background-color: #ff2525;
-    color: black;
-    border-radius: 5px;
-    cursor: pointer;
-}
 /* Container styling to align the selects and button in a row */
 .select-container {
     flex: 1; /* Ensures the dropdowns take equal space */
@@ -149,11 +136,11 @@ select option {
 /* Style for button */
 button {
     margin: 10px;
+    align-items: center;
     padding: 10px 20px; /* Padding for a clickable button */
     margin-top: 15px; /* Space above the button */
     background-color: #007bff; /* Primary button color */
     color: #fff; /* White text */
-    border: none; /* Remove default border */
     border-radius: 5px; /* Rounded corners */
     cursor: pointer; /* Change cursor on hover */
     font-size: 16px; /* Consistent font size */
@@ -162,9 +149,21 @@ button {
 
 /* Hover effect for button */
 button:hover {
-    background-color: #014fa2; /* Darker blue on hover */
+    background-color: #024082; /* Darker blue on hover */
 }
-
+/* Center the content inside the Actions column */
+.action-buttons {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Add space between the buttons */
+}
+  
+.action-buttons button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
 /* Optional: Styling for <p> tags (instruction text) */
 p {
     font-size: 16px;

@@ -41,7 +41,6 @@ const App = () => {
 
   const handleNavbarClick = (opr) => {
     setSelectedOperation(opr);
-    console.log(`Button clicked: ${opr}`);
   };
 
   const handleLoginSuccess = () => {

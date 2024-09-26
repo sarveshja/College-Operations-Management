@@ -5,6 +5,7 @@ import db from '../../services/firebaseConfig';
 import CoursesModal from '../Modal/CoursesModal';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import styles from './Courses.module.css';
+import { FaSpinner } from 'react-icons/fa';
 
 const Course = () => {
     const [courses, setCourses] = useState([]);
@@ -138,8 +139,8 @@ const Course = () => {
 
             <div className={styles.tableContainer}>
                 {loading ? (
-                    <div className={styles.loadingSpinner}>Loading...</div>
-                ) : (
+                     <div className={styles.loadingSpinner}><FaSpinner className={styles.spinnerIcon} /></div>
+                    ) : (
                     <table className={styles.table}>
                         <thead className={styles.tableHead}>
                             <tr className={styles.tableRow}>

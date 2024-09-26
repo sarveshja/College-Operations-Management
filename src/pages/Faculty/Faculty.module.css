@@ -39,13 +39,27 @@
     background-color: #e6e6fa;
     color: black;
 }
-
 .loadingSpinner {
-    color: black;
-    font-size: 30px;
-    font-weight: bolder;
-    text-align: center;
-    margin-top: 50px;
+    position: fixed; /* Fix the spinner to the middle of the page */
+    top: 50%; /* Vertically center the spinner */
+    left: 50%; /* Horizontally center the spinner */
+    transform: translate(-50%, -50%); /* Adjust for spinner size */
+    z-index: 1000; /* Make sure it's above other elements */
+}
+
+.spinnerIcon {
+    font-size: 3rem; /* Adjust size as needed */
+    color: #51279b;  /* Customize color */
+    animation: spin 1s linear infinite; /* Add spin animation */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .table {
